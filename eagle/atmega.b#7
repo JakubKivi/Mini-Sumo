@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="100" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="0.05" altunitdist="mil" altunit="mm"/>
+<grid distance="10" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="0.05" altunitdist="mil" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
@@ -578,6 +578,7 @@
 <hole x="34.29" y="15.24" drill="0.35"/>
 <dimension x1="98.5522" y1="55.116890625" x2="98.5545375" y2="14.221659375" x3="100.71068125" y3="34.669396875" textsize="1.778" layer="20"/>
 <dimension x1="33.274" y1="14.224" x2="98.5545375" y2="14.221659375" x3="65.914215625" y3="12.701103125" textsize="1.778" layer="20"/>
+<text x="64.516" y="17.018" size="1.778" layer="1">CałkaCompany+</text>
 </plain>
 <libraries>
 <library name="SparkFun-Capacitors">
