@@ -13,10 +13,19 @@
 
 
 void setup(){
+	//czujniki podłogowe
 	pinMode(floorFL, INPUT);
 	pinMode(floorFR, INPUT);
 	pinMode(floorBL, INPUT);
 	pinMode(floorBR, INPUT);
+
+	//czujniki odległości
+	pinMode(sensorF, INPUT);
+	pinMode(sensorFL, INPUT);
+	pinMode(sensorFR, INPUT);
+	pinMode(sensorB, INPUT);
+	pinMode(sensorBR, INPUT);
+	pinMode(sensorBL, INPUT);
 	
 }
 
