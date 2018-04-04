@@ -12,6 +12,11 @@
 
 
 
+bool direction = true;
+int speed; 
+
+
+
 void setup(){
 	//czujniki podłogowe
 	pinMode(floorFL, INPUT);
@@ -26,20 +31,27 @@ void setup(){
 	pinMode(sensorB, INPUT);
 	pinMode(sensorBR, INPUT);
 	pinMode(sensorBL, INPUT);
+
 	
 }
 
 void loop{
-	if(!touchFloor){
-		if(!seeEnemy){
-			//jedź se do przodu
+
+	if(!touchFloor){													//jeżeli nie dotykasz krawędzi
+		if(!seeEnemy){													//jeśli nie widzisz przeciwnika
+			go(direction, speed);
 		}
-		else{
-			//zrób tak, żeby było go widać z przodu
+		else if(!digitalRead(sensorB) || !digitalRead(sensorF)){ 		//jeżeli nie widać go z przodu bądź tyłu
+			//zrób tak, żeby było go widać z przodu lub tyłu
+			toSeeEnemyFront();
 		}
+		else go(direction, speed /*szybko*/);
 	}
 	else{
-		//stop zmiana kierunku 
+		//stop zmiana kierunku
+		stop();
+		if(direction) direction = false;
+		else direction = true;
 	}
 
 }
@@ -62,29 +74,13 @@ bool seeEnemy{
 }
 
 void toSeeEnemyFront(){
-
-	//Tutaj jest taki przypix, że będzie się w kółko kręcił
-
-	if(digitalRead(sensorFL)){
-		do{										//skręć w lewo przodem az sensorF is true
-			goFowardLeft(/*slow*/);
-		}while(digitalRead(sensorF))
-	}
-	if(digitalRead(sensorFP)){				
-		do{										//skręć w prawo przodem az sensorF is true
-			goFowardRight(/*slow*/);
-		}while(digitalRead(sensorF))
-	}
-	if(digitalRead(sensorBL)){
-		do{										//skręć w lewo tyłem az sensorB is true
-			goBackwardLeft(/*slow*/);
-		}while(digitalRead(sensorB))
-	}				
-	if(digitalRead(sensorBR)){
-		do{										//skręć w prawo tyłem az sensorB is true
-			goBackwordRight(/*slow*/);
-		}while(digitalRead(sensorB))
-	}					
+	//jest tutaj pętna w której nie sprawdzamy czy wyleciał z ringu.
+	//do{
+		if(digitalRead(sensorFL)) goFowardLeft(/*slow*/);		//skręć w lewo przodem az sensorF is true
+		if(digitalRead(sensorFP)) goFowardRight(/*slow*/);		//skręć w prawo przodem az sensorF is true
+		if(digitalRead(sensorBL)) goBackwardLeft(/*slow*/); 	//skręć w lewo tyłem az sensorB is true		
+		if(digitalRead(sensorBR)) goBackwordRight(/*slow*/);	//skręć w prawo tyłem az sensorB is true		
+	//}while(digitalRead(sensorB) || digitalRead(sensorF))
 }
 
 //sterowanie silnika
@@ -94,3 +90,10 @@ void goFowardRight(int speed){}
 void goBackword(int speed){}
 void goBackwordLeft(int speed){}
 void goBackwordRight(int speed){}
+void stop(bool direction){} //zatrzymywanie się tyłem przodem???? jest jakaś różnica?
+
+
+void go(bool direction, speed){ //jak pobrać zmienną globalną???
+	if(direction) goFoward(speed);
+	else goBackword(speed);
+}
