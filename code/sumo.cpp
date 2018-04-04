@@ -10,10 +10,9 @@
 #define sensorBL
 #define sensorBR
 
+#include "header.h"
 
 
-bool direction = true;
-int speed; 
 
 
 
@@ -58,42 +57,11 @@ void loop{
 
 
 
-bool touchFloor{
-	return 	digitalRead(floorFL) 	||
-			digitalRead(floorFR) 	|| 
-			digitalRead(floorBR) 	|| 
-			digitalRead(floorBL);
-}
-bool seeEnemy{
-	return 	digitalRead(sensorF) 	||
-			digitalRead(sensorFL) 	|| 
-			digitalRead(sensorFR) 	||
-			digitalRead(sensorB) 	||
-			digitalRead(sensorBL) 	|| 
-			digitalRead(floorBR);
-}
-
-void toSeeEnemyFront(){
-	//jest tutaj pętna w której nie sprawdzamy czy wyleciał z ringu.
-	//do{
-		if(digitalRead(sensorFL)) goFowardLeft(/*slow*/);		//skręć w lewo przodem az sensorF is true
-		if(digitalRead(sensorFP)) goFowardRight(/*slow*/);		//skręć w prawo przodem az sensorF is true
-		if(digitalRead(sensorBL)) goBackwardLeft(/*slow*/); 	//skręć w lewo tyłem az sensorB is true		
-		if(digitalRead(sensorBR)) goBackwordRight(/*slow*/);	//skręć w prawo tyłem az sensorB is true		
-	//}while(digitalRead(sensorB) || digitalRead(sensorF))
-}
-
-//sterowanie silnika
-void goFoward(int speed){}
-void goFowardLeft(int speed){}
-void goFowardRight(int speed){}
-void goBackword(int speed){}
-void goBackwordLeft(int speed){}
-void goBackwordRight(int speed){}
-void stop(bool direction){} //zatrzymywanie się tyłem przodem???? jest jakaś różnica?
 
 
-void go(bool direction, speed){ //jak pobrać zmienną globalną???
-	if(direction) goFoward(speed);
-	else goBackword(speed);
-}
+
+
+
+
+
+
