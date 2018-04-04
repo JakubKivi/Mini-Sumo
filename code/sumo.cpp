@@ -31,7 +31,6 @@ void setup(){
 
 void loop{
 	if(!touchFloor){
-		//jedzie sobie
 		if(!seeEnemy){
 			//jedź se do przodu
 		}
@@ -63,13 +62,35 @@ bool seeEnemy{
 }
 
 void toSeeEnemyFront(){
-	if(sensorFL){
-		//skręć w lewo az sensorF is true
-		do{
 
-		}while()
+	//Tutaj jest taki przypix, że będzie się w kółko kręcił
+
+	if(digitalRead(sensorFL)){
+		do{										//skręć w lewo przodem az sensorF is true
+			goFowardLeft(/*slow*/);
+		}while(digitalRead(sensorF))
 	}
-	if(sensorFP)//skręć w prawo
-	if(sensorBL)//skręć w lewo tyłem
-	if(sensorBR)//skręć w prawo tyłem 
+	if(digitalRead(sensorFP)){				
+		do{										//skręć w prawo przodem az sensorF is true
+			goFowardRight(/*slow*/);
+		}while(digitalRead(sensorF))
+	}
+	if(digitalRead(sensorBL)){
+		do{										//skręć w lewo tyłem az sensorB is true
+			goBackwardLeft(/*slow*/);
+		}while(digitalRead(sensorB))
+	}				
+	if(digitalRead(sensorBR)){
+		do{										//skręć w prawo tyłem az sensorB is true
+			goBackwordRight(/*slow*/);
+		}while(digitalRead(sensorB))
+	}					
 }
+
+//sterowanie silnika
+void goFoward(int speed){}
+void goFowardLeft(int speed){}
+void goFowardRight(int speed){}
+void goBackword(int speed){}
+void goBackwordLeft(int speed){}
+void goBackwordRight(int speed){}
