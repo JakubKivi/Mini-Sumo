@@ -572,7 +572,7 @@
 <wire x1="-41.402" y1="67.31" x2="-41.91" y2="66.802" width="0.1016" layer="145"/>
 <wire x1="-41.91" y1="66.802" x2="-42.418" y2="67.31" width="0.1016" layer="145"/>
 <wire x1="-42.418" y1="67.31" x2="-41.91" y2="67.818" width="0.1016" layer="145"/>
-<text x="88" y="16.8" size="1.778" layer="1">CC+</text>
+<text x="88.4" y="18.4" size="1.778" layer="1">CC+</text>
 </plain>
 <libraries>
 <library name="SparkFun-Capacitors">
