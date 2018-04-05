@@ -1,18 +1,6 @@
-#define floorFL  1	//front left 
-#define floorFR	2//front right
-#define floorBL	3	//back
-#define floorBR 4
+#include "header.h"
 
-#define sensorF 5	//distance sensor front
-#define sensorFL 6
-#define sensorFR 7
-#define sensorB 8
-#define sensorBL 9
-#define sensorBR 10
-
-
-
-void setup() {
+void setup(){
 	//czujniki podłogowe
 	pinMode(floorFL, INPUT);
 	pinMode(floorFR, INPUT);
@@ -26,53 +14,44 @@ void setup() {
 	pinMode(sensorB, INPUT);
 	pinMode(sensorBR, INPUT);
 	pinMode(sensorBL, INPUT);
+
+	//silnik
+	pinMode(AIN1, OUTPUT);
+	pinMode(AIN2, OUTPUT);
+	pinMode(BIN1, OUTPUT);
+	pinMode(BIN2, OUTPUT);
+	pinMode(PWMA, OUTPUT);
+	pinMode(PWMB, OUTPUT);
+	pinMode(STBY, OUTPUT);
+
 	
 }
 
-void loop() {
-	if(!touchFloor){
-		//jedzie sobie
-		if(!seeEnemy){
-			//jedź se do przodu
-		}
-		else{
-			//zrób tak, żeby było go widać z przodu
-		}
-	}
-	else{
+void loop(){
+
+	if(!touchFloor){													//jeżeli nie dotykasz krawędzi
+		if(!seeEnemy){													//jeśli nie widzisz przeciwnika
+			go();
+		}else if(!digitalRead(sensorB) || !digitalRead(sensorF)){ 		//jeżeli nie widać go z przodu bądź tyłu
+			//zrób tak, żeby było go widać z przodu lub tyłu
+			toSeeEnemyFront();
+		}else go();
+	}else{
 		//stop zmiana kierunku
+
+		if(direction) direction = false;
+		else direction = true;
 	}
 
 }
 
 
 
-bool touchFloor() {
-	if      (digitalRead(floorFL) 	||
-			digitalRead(floorFR) 	|| 
-			digitalRead(floorBR) 	|| 
-			digitalRead(floorBL))
-	        return 1;
-	else    return 0;
-}
-bool seeEnemy() {
-    if      (digitalRead(sensorF) 	||
-            digitalRead(sensorFL) 	||
-            digitalRead(sensorFR) 	||
-            digitalRead(sensorB) 	||
-            digitalRead(sensorBL))
-            return 1;
-    else    return 0;
-}
 
-/*void toSeeEnemyFront() {
-	if(sensorFL){
-		//skręć w lewo az sensorF is true
-		do{
 
-		}while()
-	}
-	if(sensorFP)//skręć w prawo
-	if(sensorBL)//skręć w lewo tyłem
-	if(sensorBR)//skręć w prawo tyłem 
-}*/ //nie podoba mi się to wcale ~Kivi
+
+
+
+
+
+
