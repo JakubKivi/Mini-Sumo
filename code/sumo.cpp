@@ -1,24 +1,3 @@
-//floor sensor
-#define floorFL  	//front left 
-#define floorFR		//front right
-#define floorBL		//back
-#define floorBR
-//distance sensor front
-#define sensorF 	
-#define sensorFL
-#define sensorFR
-#define sensorB
-#define sensorBL
-#define sensorBR
-
-//motor
-#define AIN1
-#define AIN2
-#define BIN1
-#define	BIN2
-#define PWMA
-#define PWMB
-#define STBY
 
 
 #include "header.h"
