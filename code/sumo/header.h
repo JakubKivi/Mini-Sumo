@@ -26,7 +26,9 @@ void goFowardRight(){}
 void goBackword(){}
 void goBackwardLeft(){}
 void goBackwardRight(){}
-void stop(bool direction){} //zatrzymywanie się tyłem przodem???? jest jakaś różnica?
+void goRandomly(){}
+void outOfLine(){}
+void stop(){} 
 void goFoward(){}
 
 bool direction = true;
@@ -39,28 +41,36 @@ void go(){   //jedź just jedź
 
 bool touchFloor(){                //czy dotyka podłogi
   return  digitalRead(floorFL)  ||
-      digitalRead(floorFR)  || 
-      digitalRead(floorBR)  || 
+      digitalRead(floorFR)  ||
+      digitalRead(floorBR)  ||
       digitalRead(floorBL);
 }
 
 bool seeEnemy(){                  //czy widzi przeciwnika
   return  digitalRead(sensorF)  ||
-      digitalRead(sensorFL)     || 
+      digitalRead(sensorFL)     ||
       digitalRead(sensorFR)     ||
       digitalRead(sensorB)      ||
-      digitalRead(sensorBL)     || 
+      digitalRead(sensorBL)     ||
       digitalRead(floorBR);
 }
 
+bool seeEnemieNotFront(){
+  return 
+      (digitalRead(sensorFL)    ||
+      digitalRead(sensorFR)     ||
+      digitalRead(sensorBL)     ||
+      digitalRead(floorBR)     )&&
+      !digitalRead(sensorB)     &&
+      !digitalRead(sensorF);      
+}
+
 void toSeeEnemyFront(){              //zrób tak żeby przeciwnik był nawprost
-  //jest tutaj pętna w której nie sprawdzamy czy wyleciał z ringu.
-  //do{
     if(digitalRead(sensorFL)) goFowardLeft();    //skręć w lewo przodem az sensorF is true
     if(digitalRead(sensorFR)) goFowardRight();   //skręć w prawo przodem az sensorF is true
     if(digitalRead(sensorBL)) goBackwardLeft();  //skręć w lewo tyłem az sensorB is true   
     if(digitalRead(sensorBR)) goBackwardRight(); //skręć w prawo tyłem az sensorB is true    
-  //}while(digitalRead(sensorB) || digitalRead(sensorF))
+
 }
 
 

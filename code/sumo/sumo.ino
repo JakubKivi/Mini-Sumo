@@ -24,25 +24,23 @@ void setup(){
 	pinMode(PWMB, OUTPUT);
 	pinMode(STBY, OUTPUT);
 
-	
 }
 
 void loop(){
-
 	if(!touchFloor){													//jeżeli nie dotykasz krawędzi
-		if(!seeEnemy){													//jeśli nie widzisz przeciwnika
-			go();
-		}else if(!digitalRead(sensorB) || !digitalRead(sensorF)){ 		//jeżeli nie widać go z przodu bądź tyłu
-			//zrób tak, żeby było go widać z przodu lub tyłu
-			toSeeEnemyFront();
-		}else go();
-	}else{
-		//stop zmiana kierunku
-
+		if(seeEnemieNotFront()){													//jeśli nie widzisz przeciwnika
+			toSeeEnemyFront();    
+		}else if((seeEnemy)){ 		//jeżeli nie widać go z przodu bądź tyłu
+			go();		
+		}else //wogóle nie mam pojęcia gdzie jest ziomek przeciwnik
+      goRandomly();
+	}else{  //jak jestem na liniiii
+		//zmiana kierunku
 		if(direction) direction = false;
 		else direction = true;
+    outOfLine();
+    //zrobić coś żeby nie było akcji że jedzie wzdłóż linii (np skręć zależy)
 	}
-
 }
 
 
