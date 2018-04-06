@@ -117,8 +117,10 @@ void outOfLine(){
         if(digitalRead(floorFR)) goBackwardLeft();
         if(digitalRead(floorBL)) goForwardRight();
         if(digitalRead(floorBR)) goForwardLeft();
-    else if(digitalRead(floorFL)&&digitalRead(floorBL))
-    
+    else if(digitalRead(floorFL)&&digitalRead(floorBL)) 
+    else if(digitalRead(floorFL)&&digitalRead(floorFR)) goBackward();
+    else if(digitalRead(floorFR)&&digitalRead(floorBR)) 
+    else if(digitalRead(floorBR)&&digitalRead(floorBL)) goForward();
     
      }
     /*if((digitalRead(floorFL)||digitalRead(floorBL))&&(digitalRead(sensorB)||digitalRead(sensorBR)||digitalRead(sensorBL)))

@@ -41,14 +41,3 @@ void loop(){
     //zrobić coś żeby nie było akcji że jedzie wzdłóż linii (np skręć zależy)
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
