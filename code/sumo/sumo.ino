@@ -23,14 +23,13 @@ void setup(){
 	pinMode(PWMA, OUTPUT);
 	pinMode(PWMB, OUTPUT);
 	pinMode(STBY, OUTPUT);
-
 }
 
 void loop(){
 	if(!touchFloor){													//jeżeli nie dotykasz krawędzi
 		if(seeEnemieNotFront()){													//jeśli nie widzisz przeciwnika
 			toSeeEnemyFront();    
-		}else if((seeEnemy)){ 		//jeżeli nie widać go z przodu bądź tyłu
+		}else if(seeEnemy()){ 		//jeżeli widać go z przodu bądź tyłu
 			go();		
 		}else //wogóle nie mam pojęcia gdzie jest ziomek przeciwnik
       goRandomly();
