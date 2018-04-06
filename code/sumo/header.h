@@ -1,26 +1,26 @@
 
 
 //floor sensor
-#define floorFL 1 	//front left 
-#define floorFR	2	//front right
-#define floorBL	3	//back
-#define floorBR 4
+#define floorFL 13 	//front left 
+#define floorFR	4	//front right
+#define floorBL	1	//back
+#define floorBR 3
 //distance sensor front
-#define sensorF 5	
-#define sensorFL 6
-#define sensorFR 7
-#define sensorB 8
-#define sensorBL 9
-#define sensorBR 10
+#define sensorF A1	
+#define sensorFL 13
+#define sensorFR A0
+#define sensorB A3
+#define sensorBL A2
+#define sensorBR 0
 
 //motor
-#define AIN1 11
-#define AIN2 12       //na razie a to Lewy b to Prawy 1 to przód 2 tył
-#define BIN1 13
-#define	BIN2 14
-#define PWMA 15 
-#define PWMB 16
-#define STBY 17
+#define AIN1 7
+#define AIN2 6       //na razie a to Lewy b to Prawy 1 to przód 2 tył
+#define BIN1 9
+#define	BIN2 10
+#define PWMA 5 
+#define PWMB 11
+#define STBY 8
 
 bool direction = true;
 int speed; 

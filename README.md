@@ -1,4 +1,4 @@
-# Mini-Sumo
+﻿# Mini-Sumo
 First really project by CałkaCompany+
 
 Oznaczenia wyjść i wejść w kodzie:
@@ -18,7 +18,7 @@ Oznaczenia wyjść i wejść w kodzie:
 |      15       | PWM/D11 |       `PWMB`      |         PWM dla silnika B       |
 |      16       |    D12  |        `-`        |                                 |
 |      17       |    D13  |     `sensorFL`    | Czujnik odległości lewy przedni |
-|      23       |    A0   |     `sensorFP`    | Czujnik odległości prawy przedni|
+|      23       |    A0   |     `sensorFR`    | Czujnik odległości prawy przedni|
 |      24       |    A1   |     `sensorF`     |   Czujnik odległości przedni    |
 |      25       |    A2   |     `sensorBL`    | Czujnik odległości prawy tylny  |
 |      26       |    A3   |     `sensorB`     |   Czujnik odległości tylni      |
