@@ -117,12 +117,32 @@ void outOfLine(){
         if(digitalRead(floorFR)) goBackwardLeft();
         if(digitalRead(floorBL)) goForwardRight();
         if(digitalRead(floorBR)) goForwardLeft();
-    else if(digitalRead(floorFL)&&digitalRead(floorBL)) 
+     }else if(digitalRead(floorFL)&&digitalRead(floorBL)){
+      if(seeEnemy){
+        
+      }else{
+          digitalWrite(AIN2, HIGH);
+          digitalWrite(AIN1, LOW);
+          digitalWrite(BIN2, LOW);
+          digitalWrite(BIN1, HIGH);
+  
+          analogWrite(PWMB, speed);  
+          analogWrite(PWMA, speed);
+      }
+      
+    }
     else if(digitalRead(floorFL)&&digitalRead(floorFR)) goBackward();
-    else if(digitalRead(floorFR)&&digitalRead(floorBR)) 
     else if(digitalRead(floorBR)&&digitalRead(floorBL)) goForward();
-    
-     }
+    else{ 
+      digitalWrite(AIN2, HIGH);
+      digitalWrite(AIN1, LOW);
+      digitalWrite(BIN2, LOW);
+      digitalWrite(BIN1, HIGH);
+  
+      analogWrite(PWMB, speed);  
+      analogWrite(PWMA, speed);
+    }
+}
     /*if((digitalRead(floorFL)||digitalRead(floorBL))&&(digitalRead(sensorB)||digitalRead(sensorBR)||digitalRead(sensorBL)))
     goBackwardRight();
     
@@ -135,7 +155,7 @@ void outOfLine(){
     else if((digitalRead(floorFR)||digitalRead(floorBR))&&(digitalRead(sensorF)||digitalRead(sensorFR)||digitalRead(sensorFL)))
     goBackwardLeft();*/
     
-}
+
 
 void go(){   //jedź just jedź        
   if(direction) goForward();
