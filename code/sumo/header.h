@@ -22,6 +22,7 @@
 #define PWMB 11
 #define STBY 12
 
+
 bool direction = true;
 int speed; 
 int d=50;         //============== 50 jest chwilowe potem ustalimy na pods testów ======================\\
@@ -94,13 +95,13 @@ void goRandomly(){
     digitalWrite(AIN1, HIGH);
     digitalWrite(AIN2, LOW);
     digitalWrite(BIN1, HIGH);
-    digitalWrite(BIN2, LOW);
+    digitalWrite(BIN2, LOW);   //jade w przód
     if(vector){
         analogWrite(PWMB, speed-d);
-        analogWrite(PWMA, speed);
+        analogWrite(PWMA, speed); //ale skręcam trochę w lewo
     }else{
       analogWrite(PWMB, speed);
-      analogWrite(PWMA, speed-d);
+      analogWrite(PWMA, speed-d);   //albo troche w prawo
     }
   }else{
     digitalWrite(AIN2, HIGH);

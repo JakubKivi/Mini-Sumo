@@ -26,15 +26,15 @@ void setup(){
 }
 
 void loop(){
-	if(!touchFloor){													//jeżeli nie dotykasz krawędzi
-		if(seeEnemieNotFront()){													//jeśli nie widzisz przeciwnika
+	if(!touchFloor){			//jeżeli nie dotykasz krawędzi
+		if(seeEnemieNotFront()){	//jeśli nie widzisz przeciwnika
 			toSeeEnemyFront();    
 		}else if(seeEnemy()){ 		//jeżeli widać go z przodu bądź tyłu
 			go();		
-		}else //wogóle nie mam pojęcia gdzie jest ziomek przeciwnik
+		}else 				//wogóle nie mam pojęcia gdzie jest ziomek przeciwnik
       goRandomly();
-	}else{  //jak jestem na liniiii
-		//zmiana kierunku
+	}else{  				//jak jestem na liniiii
+						//zmiana kierunku
 		if(direction) direction = false;
 		else direction = true;
     outOfLine();
