@@ -13757,7 +13757,13 @@ Source: AVX .. aphvc.pdf</description>
 <text x="-33.02" y="91.44" size="1.778" layer="91">ICSP</text>
 <text x="-60.96" y="-35.56" size="1.778" layer="91">Potencjometr do regulowania komparatorów</text>
 <text x="-76.2" y="73.66" size="1.778" layer="91">Do zasilania</text>
-<text x="144.78" y="88.9" size="1.778" layer="91">Wyprowadzenia do czujników</text>
+<text x="139.7" y="86.36" size="1.778" layer="91">Wyprowadzenia do czujników odległości</text>
+<text x="142.24" y="83.82" size="1.778" layer="91">LF</text>
+<text x="157.48" y="83.82" size="1.778" layer="91">F</text>
+<text x="172.72" y="83.82" size="1.778" layer="91">RF</text>
+<text x="142.24" y="55.88" size="1.778" layer="91">LB</text>
+<text x="157.48" y="55.88" size="1.778" layer="91">B</text>
+<text x="172.72" y="55.88" size="1.778" layer="91">RB</text>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="-17.78" y="27.94"/>
