@@ -22,7 +22,6 @@ void setup(){
 	pinMode(BIN2, OUTPUT);
 	pinMode(PWMA, OUTPUT);
 	pinMode(PWMB, OUTPUT);
-	pinMode(STBY, OUTPUT);
 }
 
 void loop(){
