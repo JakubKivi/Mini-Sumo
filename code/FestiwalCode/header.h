@@ -11,12 +11,13 @@ const int TFL = A3;
 const int TFR = A2;
 const int TBL = A1;
 const int TBR = A0;
-int t = 1;
+int t = 3;
 int MAX = 255;
 
 bool direction = 1; 
 
 void goFront(int x){
+  direction = true;
   digitalWrite(PWMA, x);
   digitalWrite(PWMB, x);  
   digitalWrite(10, LOW);
@@ -26,6 +27,7 @@ void goFront(int x){
   delay(t);
 }
 void goBack(int x){
+  direction = false;
   digitalWrite(PWMA, x);
   digitalWrite(PWMB, x);
   digitalWrite(10, HIGH);
@@ -69,7 +71,7 @@ void follow(){
   else if(digitalRead(FR)==LOW)  goRight();  
   else if(digitalRead(BR)==LOW)  goRight();  
   else if(digitalRead(BL)==LOW)  goLeft();  
-  else stop(); 
+  
 }
 
 bool endF(){

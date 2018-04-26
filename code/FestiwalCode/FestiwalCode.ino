@@ -1,5 +1,5 @@
 #include "header.h"
-
+ int lol = 250;
 void setup() { 
   pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
@@ -13,33 +13,52 @@ void setup() {
   pinMode(FR, INPUT);
   pinMode(BL, INPUT);
   pinMode(BR, INPUT);
-  
-  //goFront(((MAX/4)*3));  
+ /* bool elo(){
+    return (analogRead(TBL) < 100 || analogRead(TBR) < 100  || analogRead(TFL) < 100 || analogRead(TFR) < 100) == LOW || (digitalRead(F) && digitalRead(B) && digitalRead(FR) && digitalRead(FL) &&digitalRead(BL) && digitalRead(BR)) == true);
+  }*/
+  //goFront(((MAX/4)*3));
+  delay(5000);
+  while(((analogRead(TBL) < 100 || analogRead(TBR) < 100  || analogRead(TFL) < 100 || analogRead(TFR) < 100) == false) && (digitalRead(F) && digitalRead(B) && digitalRead(FR) && digitalRead(FL) &&digitalRead(BL) && digitalRead(BR)) == true){
+    go(direction, MAX);
+  }
 }
 
 
 
 
 void loop() {
-  
-  if(analogRead(TFL) < 100 || analogRead(TFR) < 100){
+ 
+ if(analogRead(TFL) < 100 || analogRead(TFR) < 100){
     stop();
     if(direction) direction = false;
     else direction = true;
     go(direction, MAX);
-    delay(500);
+    delay(lol);
+    
   } 
   else if(analogRead(TBL) < 100 || analogRead(TBR) < 100){
     stop();
     if(direction) direction = false;
     else direction = true;
     go(direction, MAX);
-    delay(500);
+    delay(lol);
+    
   }
-  else if(see) follow();
-  //else go(direction, MAX);
+  else if(see){ 
+    stop();
+    follow();
+    
+  }
+  else{
+    stop();
+    while(((analogRead(TBL) < 100 || analogRead(TBR) < 100  || analogRead(TFL) < 100 || analogRead(TFR) < 100) == false) && (digitalRead(F) &&
+    digitalRead(B) && digitalRead(FR) && digitalRead(FL) &&digitalRead(BL) && digitalRead(BR)) == true){
+      go(direction, MAX);
+    }
+
+  }
   
-  stop();
+  
   /*if(endF){
     go(direction, MAX);
     if(direction) direction=0;
