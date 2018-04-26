@@ -6,6 +6,7 @@
 #define floorBL	A2	//back
 #define floorBR A3
 //distance sensor front
+<<<<<<< HEAD
 #define sensorF 1
 #define sensorFL 2
 #define sensorFR 0
@@ -29,6 +30,29 @@ int d=50;         //============== 50 jest chwilowe potem ustalimy na pods testÃ
 
 bool check(int pin){
   if (analogRead(pin)>500) return 1;
+=======
+#define sensorFR 3
+#define sensorBR 4
+#define sensorB 2
+#define sensorBL 1
+#define sensorFL 7
+#define sensorF 0
+
+//motor
+#define AIN1 9
+#define AIN2 10
+#define BIN1 12
+#define	BIN2 13
+#define PWMA 8 
+#define PWMB 7
+
+bool direction = true;
+int speed; 
+int d=50;         //=== 50 jest chwilowe potem ustalimy na pods testÃ³w ===\\
+
+bool check(int pin){
+  if (analogRead(pin)>10) return 1;
+>>>>>>> ac3280b1424c8cc1607056e6b262c60d44ee8c24
   else return 0;
 }
 
@@ -54,7 +78,7 @@ void goForwardLeft(){
   }
   
 void goForwardRight(){
-  digitalWrite(AIN1, HIGH);
+  digitalWrite(AIN1, LOW);
   digitalWrite(AIN2, LOW);
   digitalWrite(BIN1, HIGH);
   digitalWrite(BIN2, LOW);
@@ -74,14 +98,14 @@ void goBackword(){
 void goBackwardLeft(){
   digitalWrite(AIN2, HIGH);
   digitalWrite(AIN1, LOW);
-  digitalWrite(BIN2, HIGH);
+  digitalWrite(BIN2, LOW);
   digitalWrite(BIN1, LOW);
   
   analogWrite(PWMA, speed-d);  
   analogWrite(PWMB, speed);
   }
 void goBackwardRight(){
-  digitalWrite(AIN2, HIGH);
+  digitalWrite(AIN2, LOW);
   digitalWrite(AIN1, LOW);
   digitalWrite(BIN2, HIGH);
   digitalWrite(BIN1, LOW);
