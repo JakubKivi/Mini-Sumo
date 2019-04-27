@@ -10,12 +10,13 @@
 
 //motor
 
-#define AIN1 9
+#define AIN1 11
 #define AIN2 10
-#define BIN1 11
-#define	BIN2 12
+#define BIN1 12
+#define	BIN2 13
 
 bool direction = true;
+#define direction_TOG direction ^= true;
 int speed;
 int p=50;         //============== 50 jest chwilowe potem ustalimy na pods testów ======================\\
 
