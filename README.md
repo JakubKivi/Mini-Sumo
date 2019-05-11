@@ -5,23 +5,22 @@ Oznaczenia wyjść i wejść w kodzie:
 
 | numer wyjścia | arduino | zmienna w kodzie  |                 opis            |
 | ------------  |---------| ----------------  | ------------------------------  |
-|       1       |  PWM/D3 |      `floorBR`    |    Czujnik podłoża prawy tylny  |
-|       2       |    D4   |      `floorFR`    |   Czujnik podłoża prawy przedni |
+|       1       |  PWM/D11 |      `floorBR`    |    Czujnik podłoża prawy tylny  |
+|       2       |    D13   |      `floorFR`    |   Czujnik podłoża prawy przedni |
+|      31       |  D10  |     `floorBL`     |   Czujnik podłoża lewy tylny    |
+|      32       |    D12   |     `floorFL`     |  Czujnik podłoża lewy przedni   |
+|               |         |                   |                                 |
 |    3\5\21     |   GND   |         `-`       |           Uziemienie            |
 |      4\6      |   VCC   |         `-`       |           Zasilanie             |
 |               |         |                   |                                 |
 |      ?        |    D12  |       `AIN1`      |       Prawy silnik w tył        |\
-|       ?       |    D13  |       `AIN2`      |      Prawy silnik w przód       | \    Patrząc na 
+|       ?       |    D13  |       `AIN2`      |      Prawy silnik w przód       | \    Patrząc na
 |      ?        |    D10  |       `BIN1`      |       Lewy silnik  w tył        | /      mordke!
 |       ?       |    D11  |       `BIN2`      |      Lewy silnik  w przód       |/
 |               |         |                   |                                 |
-|      17       |    D13  |     `sensorFL`    | Czujnik odległości lewy przedni |
-|      23       |    A0   |     `sensorFR`    | Czujnik odległości prawy przedni|
-|      24       |    A1   |     `sensorF`     |   Czujnik odległości przedni    |
-|      25       |    A2   |     `sensorBL`    | Czujnik odległości prawy tylny  |
-|      26       |    A3   |     `sensorB`     |   Czujnik odległości tylni      |
-|      27       |    A4   |         `-`       |                                 |
-|      28       |    A5   |         `-`       |                                 |
-|      30       |  D0/RX  |     `sensorBR`    |  Czujnik odległości prawy tylni |
-|      31       |  D1/TX  |     `floorBL`     |   Czujnik podłoża lewy tylny    |
-|      32       |    D2   |     `floorFL`     |  Czujnik podłoża lewy przedni   |
+|      ?        |    D3   |      `sensorFL`   | Czujnik odległości lewy przedni |
+|      ?        |    D2   |     `sensorFR`    | Czujnik odległości prawy przedni|
+|      ?        |    D0   |     `sensorF`     |   Czujnik odległości przedni    |
+|      ?        |    D1   |     `sensorBL`    | Czujnik odległości prawy tylny  |
+|      ?        |    D7   |     `sensorB`     |   Czujnik odległości tylni      |
+|      ?        |    D4   |     `sensorBR`    |  Czujnik odległości prawy tylni |

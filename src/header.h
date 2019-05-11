@@ -1,12 +1,17 @@
 #include "Arduino.h"
 
 //distance sensor front
-#define sensorF 5
-#define sensorFL 0
+#define sensorF 0
+#define sensorFL 3
 #define sensorFR 2
-#define sensorB 1
-#define sensorBL 8
+#define sensorB 7
+#define sensorBL 1
 #define sensorBR 4
+
+#define floorBL 10
+#define floorBR 11
+#define floorFL 12
+#define floorFR 13		//nie jestem pewny czy dobrze są lewy prawy ale to nieważne
 
 //motor
 
@@ -76,6 +81,8 @@ void goBackward(){
   digitalWrite(BIN1, 1);
   digitalWrite(BIN2, 0);
 }
+
+
 
 //sterowanie silnika
 bool go(int x){   //0 - full   1 - optimal 2 -  left 3 -right
