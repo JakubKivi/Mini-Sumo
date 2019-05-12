@@ -42,10 +42,12 @@ void error(int errorNr){
 }
 
 bool floorFront(){
+//	if(analogRead(floorFL)>10||analogRead(floorFR)>10) retirn 1;
 	return 0;
 }
 
 bool floorBack(){
+//	if(analogRead(floorBL)>10||analogRead(floorBR)>10) retirn 1;
 	return 0;
 }
 
