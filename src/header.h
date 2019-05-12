@@ -24,38 +24,35 @@ decode_results results;
 #define BIN1 10
 #define	BIN2 11
 
-#define direction_TOG direction ^= true;
-int speed;
-int p=0;         //============== 50 jest chwilowe potem ustalimy na pods testów ======================\\
-
 void error(int errorNr){
-		digitalWrite(AIN1, 0);
-		digitalWrite(AIN2, 0);
-    digitalWrite(BIN1, 0);
-    digitalWrite(BIN2, 0);
+	digitalWrite(AIN1, 0);
+	digitalWrite(AIN2, 0);
+  digitalWrite(BIN1, 0);
+  digitalWrite(BIN2, 0);
 
-		while(true){
-			for (int i = 0; i < errorNr; ++i){
-				digitalWrite(9,LOW);
-				delay(200);
-				digitalWrite(9,HIGH);
-				delay(200);
-			}
-			delay(2000);
-
-			//Serial.println(program);
+	while(true){
+		for (int i = 0; i < errorNr; ++i){
+			digitalWrite(9,LOW);
+			delay(200);
+			digitalWrite(9,HIGH);
+			delay(200);
 		}
+		delay(2000);
 	}
-
-bool check(int pin){
-  if (analogRead(pin)>500) return 1;
-  else return 0;
 }
 
-bool floor(){
+bool floorFront(){
 	return 0;
 }
 
+bool floorBack(){
+	return 0;
+}
+
+bool floor(){
+	if(floorFront()||floorBack())return 1;
+	return 0;
+}
 
 void slowStop(){
   digitalWrite(AIN1, 0);
@@ -126,10 +123,6 @@ void go(int x, bool direction){ //0-full; 1-optimal; 2-left; 3-right
 }
 
 void spin(){
-    /*Ma1_OFF;
-    Ma2_ON;
-    Mb1_ON;
-    Mb2_OFF;*/
     digitalWrite(AIN1, 1);
     digitalWrite(AIN2, 0);
     digitalWrite(BIN1, 0);
@@ -138,8 +131,6 @@ void spin(){
     slowStop();
     delay(3);
 }
-
-
 
 byte irRemoute ()
 {
