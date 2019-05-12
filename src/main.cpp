@@ -45,13 +45,13 @@ while(play){
 		slowStop();
 		while (true){
 			if(!floor()){
-				if(digitalRead(sensorB)==0) go(0, 0);
-				else if(digitalRead(sensorF)==0) go(0, 1);
-				else if(digitalRead(sensorFR)==0) go(3, 1);
+				while(digitalRead(sensorB)==0) go(0, 0);
+				while(digitalRead(sensorF)==0) go(0, 1);
+				if(digitalRead(sensorFR)==0) go(3, 1);
 				else if(digitalRead(sensorFL)==0) go(2, 1);
 				else if(digitalRead(sensorBR)==0) go(3, 0);
 				else if(digitalRead(sensorBL)==0) go(2, 0);
-				else slowStop();
+				else spin();
 			}else if(floorFront()){
 				go(0, 0);
 				delay(100);
