@@ -1,4 +1,8 @@
 #include "Arduino.h"
+#include "../lib/IRremote/IRremote.h"
+
+IRrecv irrecv(8);
+decode_results results;
 
 //distance sensor front
 #define sensorF 0
@@ -8,10 +12,10 @@
 #define sensorBL 1
 #define sensorBR 4
 
-#define floorBL 10
-#define floorBR 11
-#define floorFL 12
-#define floorFR 13		//nie jestem pewny czy dobrze są lewy prawy ale to nieważne
+#define floorBL 13
+#define floorBR 12
+#define floorFL 11
+#define floorFR 10		//nie jestem pewny czy dobrze są lewy prawy ale to nieważne
 
 //motor
 
@@ -20,11 +24,6 @@
 #define BIN1 10
 #define	BIN2 11
 
-//Leds on board
-	#define builtLed1 		(1<<PB0)
-	#define builtLed1_ON	PORTB |= builtLed1
-	#define builtLed1_OFF	PORTB &= ~builtLed1
-	#define builtLed1_TOG	PORTB ^= builtLed1
 
 
 bool direction = true;
@@ -39,9 +38,11 @@ void error(int errorNr){
     digitalWrite(BIN2, 0);
 
 		while(true){
-			for (int i = 0; i < 2*errorNr; ++i){
+			for (int i = 0; i < errorNr; ++i){
+				digitalWrite(9,LOW);
 				delay(200);
-				builtLed1_TOG;
+				digitalWrite(9,HIGH);
+				delay(200);
 			}
 			delay(2000);
 
@@ -53,6 +54,7 @@ bool check(int pin){
   if (analogRead(pin)>500) return 1;
   else return 0;
 }
+
 
 void slowStop(){
   digitalWrite(AIN1, 0);
@@ -82,7 +84,19 @@ void goBackward(){
   digitalWrite(BIN2, 0);
 }
 
-
+void spin(){
+    /*Ma1_OFF;
+    Ma2_ON;
+    Mb1_ON;
+    Mb2_OFF;*/
+    digitalWrite(AIN1, 1);
+    digitalWrite(AIN2, 0);
+    digitalWrite(BIN1, 0);
+    digitalWrite(BIN2, 1);
+    delay(1);
+    slowStop();
+    delay(3);
+}
 
 //sterowanie silnika
 bool go(int x){   //0 - full   1 - optimal 2 -  left 3 -right
@@ -110,7 +124,7 @@ bool go(int x){   //0 - full   1 - optimal 2 -  left 3 -right
 
         }else error(9);
 
-  }else if(x==2){
+  }else if(x==3){
 
         if(direction){
             goForward();
@@ -130,7 +144,7 @@ bool go(int x){   //0 - full   1 - optimal 2 -  left 3 -right
 						delay(1);
         }else error(11);
 
-  }else if (x==3){
+  }else if (x==2){
 
         if(direction){
 						goForward();
@@ -166,22 +180,53 @@ bool seeEnemy(){                  //czy widzi przeciwnika
 bool toSeeFront(){
 
     //if(!disA || !disB) return 1;
-  if(sensorF && sensorFL && sensorFR && sensorB && sensorBR && sensorBR) return 0;
-
-  if(!sensorFR || !sensorBR) direction=0;
+  if(digitalRead(sensorF) && digitalRead(sensorFL) && digitalRead(sensorFR) && digitalRead(sensorB) ) return 0;
+	return 1;
+  /*if(!digitalRead(sensorFR) || !digitalRead(sensorBR)) direction=0;
   else if(!sensorFR || !sensorFL) direction=1;
 
-  if(!sensorFL||!sensorBR){
+  if(!digitalRead(sensorFL)||!digitalRead(sensorBR)){
     while(sensorF && sensorB){
       if(!go(2)) return 0;
     }
     return 1;
   }
 
-  else if(!sensorFR||!sensorBL){
+  else if(!digitalRead(sensorFR)||!digitalRead(sensorBL)){
     while(sensorF && sensorB){
       if(!go(3)) return 0;
     }
     return 1;
+  }*/
+}
+
+
+byte irRemoute ()
+{
+byte dane=0;
+  while(dane==0)
+{
+   if (irrecv.decode(&results)) // sprawdza, czy otrzymano sygna� IR
+{
+       unsigned long odczyt = results.value; // sygnał zapisuje jako odczyt
+switch (odczyt)
+       {
+case 1857: //power
+  dane = 1;
+break;
+         case 3905: //eneter
+dane = 1;
+    break;
+
+default:
+         dane=0;
+}
+      irrecv.resume(); // reseruje czujnik
+}
+   else
+{
+    dane=0;
+}
   }
+return dane ;
 }

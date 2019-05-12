@@ -1,6 +1,8 @@
 #include "header.h"
 
 void setup(){
+
+	irrecv.enableIRIn();
 	//czujniki odległości
 	pinMode(sensorF, INPUT);
 	pinMode(sensorFL, INPUT);
@@ -16,26 +18,43 @@ void setup(){
 	pinMode(BIN2, OUTPUT);
 
 	//Led
-	pinMode(8, OUTPUT);
+	pinMode(9, OUTPUT);
+	digitalWrite(9,HIGH);
 
-	slowStop(); //for safety
+	for(int i = 0; i < 5; i++){
+		digitalWrite(9, 0);
+		delay(100);
+		digitalWrite(9, 1);
+		delay(100);
+	}
+	delay(4000);
 }
 
+
+
 void loop(){
-	builtLed1_ON;
-	delay(3000);
-	builtLed1_OFF;
+bool play=0;
+	byte check = irRemoute();
+ if (check != 0)
+{
+	play=1;
+  // Tutaj podajemy co ma wykonać dalej z zmienną check jeżeli nie jest ona zerem
+}
+while(play){
+	while(!digitalRead(sensorB)){
+		direction=0;
+		hardStop();
+		go(0);
+	}
+	while(!digitalRead(sensorF)){
+		direction=1;
+		hardStop();
+		go(0);
+	}
 
-	go(2);
-	delay(1000);
-	go(3);
-	delay(1000);
-	direction_TOG;
-	go(2);
-	delay(1000);
-	go(3);
-	delay(1000);
-	direction_TOG;
+		spin();
 
+
+}
 
 }
