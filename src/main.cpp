@@ -42,14 +42,14 @@ bool play=0;
 }
 while(play){
 	while(!digitalRead(sensorB)){
-		direction=0;
-		hardStop();
-		go(0);
+
+
+		goBackward();
 	}
 	while(!digitalRead(sensorF)){
-		direction=1;
-		hardStop();
-		go(0);
+
+
+		goBackward();
 	}
 
 		spin();

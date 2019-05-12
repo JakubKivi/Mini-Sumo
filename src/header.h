@@ -70,14 +70,14 @@ void hardStop(){
   digitalWrite(BIN2, 1);
 }
 
-void goForward(){
+void goBackward(){
   digitalWrite(AIN1, 0);
   digitalWrite(AIN2, 1);
   digitalWrite(BIN1, 0);
   digitalWrite(BIN2, 1);
 }
 
-void goBackward(){
+void goForward(){
   digitalWrite(AIN1, 1);
   digitalWrite(AIN2, 0);
   digitalWrite(BIN1, 1);
