@@ -24,9 +24,6 @@ decode_results results;
 #define BIN1 10
 #define	BIN2 11
 
-
-
-bool direction = true;
 #define direction_TOG direction ^= true;
 int speed;
 int p=0;         //============== 50 jest chwilowe potem ustalimy na pods testów ======================\\
@@ -55,6 +52,10 @@ bool check(int pin){
   else return 0;
 }
 
+bool floor(){
+	return 0;
+}
+
 
 void slowStop(){
   digitalWrite(AIN1, 0);
@@ -70,18 +71,58 @@ void hardStop(){
   digitalWrite(BIN2, 1);
 }
 
-void goBackward(){
+void goForward(){
   digitalWrite(AIN1, 0);
   digitalWrite(AIN2, 1);
   digitalWrite(BIN1, 0);
   digitalWrite(BIN2, 1);
 }
 
-void goForward(){
+void goBackward(){
   digitalWrite(AIN1, 1);
   digitalWrite(AIN2, 0);
   digitalWrite(BIN1, 1);
   digitalWrite(BIN2, 0);
+}
+
+void go(int x, bool direction){ //0-full; 1-optimal; 2-left; 3-right
+	if(x==0){
+		direction?goForward():goBackward();
+	}
+	else if(x==1){
+		if(direction){
+			goForward();
+			delay(1);
+			slowStop();
+			delay(3);
+		}else{
+			goBackward();
+			delay(1);
+			slowStop();
+			delay(3);
+		}
+	}else if(x==2){
+		if(direction){
+			slowStop();
+			digitalWrite(AIN2, 1);
+			delay(1);
+		}else{
+			slowStop();
+			digitalWrite(BIN1, 1);
+			delay(1);
+		}
+	}else if(x==3){
+		if(direction){
+			slowStop();
+			digitalWrite(BIN2, 1);
+			delay(1);
+		}else{
+			slowStop();
+			digitalWrite(AIN1, 1);
+			delay(1);
+		}
+	}
+
 }
 
 void spin(){
@@ -98,107 +139,6 @@ void spin(){
     delay(3);
 }
 
-//sterowanie silnika
-bool go(int x){   //0 - full   1 - optimal 2 -  left 3 -right
-  if(x==0){
-        direction?goForward():goBackward();
-  }else if(x==1){
-
-        if(direction){
-
-              goForward();
-            //  if(floorSensors(direction)) return 0;
-              delayMicroseconds(p);
-              slowStop();
-            //  if(floorSensors(direction)) return 0;
-              delayMicroseconds(100-p);
-
-        }else if(!direction){
-
-              goBackward();
-            //  if(floorSensors(direction)) return 0;
-              delayMicroseconds(p);
-              slowStop();
-          //    if(floorSensors(direction)) return 0;
-              delayMicroseconds(100-p);
-
-        }else error(9);
-
-  }else if(x==3){
-
-        if(direction){
-            goForward();
-          	delay(100);
-						slowStop();
-						digitalWrite(BIN2, 1);
-						delay(100);
-						slowStop();
-						delay(1);
-        }else if(!direction){
-						goBackward();
-						delay(100);
-						slowStop();
-						digitalWrite(AIN1, 1);
-						delay(100);
-						slowStop();
-						delay(1);
-        }else error(11);
-
-  }else if (x==2){
-
-        if(direction){
-						goForward();
-						delay(100);
-						slowStop();
-						digitalWrite(AIN2, 1);
-						delay(100);
-						slowStop();
-						delay(1);
-        }else if(!direction){
-						goBackward();
-						delay(100);
-						slowStop();
-						digitalWrite(BIN1, 1);
-						delay(100);
-						slowStop();
-						delay(1);
-        }else error(12);
-
-  }
-  else error(13);
-  return 1;
-}
-
-
-bool seeEnemy(){                  //czy widzi przeciwnika
-  return  digitalRead(sensorF)  ||
-      digitalRead(sensorFR)     ||
-      digitalRead(sensorB)      ||
-      digitalRead(sensorBL);
-}
-
-bool toSeeFront(){
-
-    //if(!disA || !disB) return 1;
-  if(digitalRead(sensorF) && digitalRead(sensorFL) && digitalRead(sensorFR) && digitalRead(sensorB) ) return 0;
-	return 1;
-  /*if(!digitalRead(sensorFR) || !digitalRead(sensorBR)) direction=0;
-  else if(!sensorFR || !sensorFL) direction=1;
-
-  if(!digitalRead(sensorFL)||!digitalRead(sensorBR)){
-    while(sensorF && sensorB){
-      if(!go(2)) return 0;
-    }
-    return 1;
-  }
-
-  else if(!digitalRead(sensorFR)||!digitalRead(sensorBL)){
-    while(sensorF && sensorB){
-      if(!go(3)) return 0;
-    }
-    return 1;
-  }*/
-}
 
 
 byte irRemoute ()
@@ -214,9 +154,12 @@ switch (odczyt)
 case 1857: //power
   dane = 1;
 break;
-         case 3905: //eneter
-dane = 1;
-    break;
+case 3905: //eneter
+	dane = 1;
+break;
+case 16711935: //eneter
+	dane = 1;
+break;
 
 default:
          dane=0;

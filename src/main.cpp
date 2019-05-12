@@ -41,20 +41,20 @@ bool play=0;
   // Tutaj podajemy co ma wykonać dalej z zmienną check jeżeli nie jest ona zerem
 }
 while(play){
-	while(!digitalRead(sensorB)){
-
-
-		goBackward();
+	goForward();
+	delay(100);
+	slowStop();
+	while (true){
+		if(!floor()){
+			while(digitalRead(sensorB)==0) goBackward();
+			while(digitalRead(sensorF)==0) goForward();
+			if(digitalRead(sensorFR)==0) go(3, 1);
+			else if(digitalRead(sensorFL)==0) go(2, 1);
+			else if(digitalRead(sensorBR)==0) go(3, 0);
+			else if(digitalRead(sensorBL)==0) go(3, 1);
+			else spin();
+		}
 	}
-	while(!digitalRead(sensorF)){
-
-
-		goBackward();
-	}
-
-		spin();
-
-
 }
 
 }
